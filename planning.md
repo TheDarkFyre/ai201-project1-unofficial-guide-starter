@@ -9,6 +9,7 @@
 
 ## Domain
 
+This unofficial guide compiles and makes searchable student reviews, difficulty ratings, and classroom experiences for Computer Science professors at San Jose State University. This specific knowledge is typically fragmented across dozens of individual profile pages, making it difficult to directly compare teaching styles, workload expectations, and grading policies. Centralizing this data allows students to quickly query and cross-reference qualitative insights that are impossible to find in official university course catalogs or by manually clicking through separate review sites.
 <!-- What domain did you choose? Why is this knowledge valuable and hard to find through official channels? -->
 
 ---
@@ -20,16 +21,16 @@
 
 | # | Source | Description | URL or location |
 |---|--------|-------------|-----------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-| 10 | | | |
+| 1 | RMP | Student Reviews of Sayma Akther | https://www.ratemyprofessors.com/professor/2926663 |
+| 2 | RMP | Student Reviews of Nada Attar | https://www.ratemyprofessors.com/professor/2445092 |
+| 3 | RMP | Student Reviews of Thomas Austin | https://www.ratemyprofessors.com/professor/2000580 |
+| 4 | RMP | Student Reviews of Katerina Potika | https://www.ratemyprofessors.com/professor/2099184 |
+| 5 | RMP | Student Reviews of Mark Stamp | https://www.ratemyprofessors.com/professor/281383 |
+| 6 | RMP | Student Reviews of David Taylor | https://www.ratemyprofessors.com/professor/214947 |
+| 7 | RMP | Student Reviews of Mike Wood | https://www.ratemyprofessors.com/professor/2922737 |
+| 8 | RMP | Student Reviews of Tahereh Arabghalizi | https://www.ratemyprofessors.com/professor/2926378 |
+| 9 | RMP | Student Reviews of Doug Case | https://www.ratemyprofessors.com/professor/3015141 |
+| 10 | RMP | Student Reviews of Chung-Wen Tsao | https://www.ratemyprofessors.com/professor/2318479 |
 
 ---
 

@@ -9,6 +9,8 @@
 
 ## Domain
 
+This unofficial guide compiles and makes searchable student reviews, difficulty ratings, and classroom experiences for Computer Science professors at San Jose State University. This specific knowledge is typically fragmented across dozens of individual profile pages, making it difficult to directly compare teaching styles, workload expectations, and grading policies. Centralizing this data allows students to quickly query and cross-reference qualitative insights that are impossible to find in official university course catalogs or by manually clicking through separate review sites.
+
 <!-- What topic or category of knowledge does your system cover?
      Why is this knowledge valuable, and why is it hard to find through official channels?
      Example: "Student reviews of CS professors at [university] — useful because official
