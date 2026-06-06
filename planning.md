@@ -41,11 +41,11 @@ This unofficial guide compiles and makes searchable student reviews, difficulty 
      numbers fit the structure of your documents.
      A review-heavy corpus warrants different chunking than a long FAQ. -->
 
-**Chunk size:**
+**Chunk size:** Chunks will be mapped to individual reviews, not character counts.
 
-**Overlap:**
+**Overlap:** 0. There will be no overlap between chunks since each review is independently written.
 
-**Reasoning:**
+**Reasoning:** Since each review is self-contained and written by a different student, often for a different course, using an arbitrary character limit or overlap would lead to different reviews bleeding into each other. Each chunk will also have global metadata (Professor Name, Course) appended to it to ensure it remains retrievable out of context.
 
 ---
 
@@ -57,11 +57,11 @@ This unofficial guide compiles and makes searchable student reviews, difficulty 
      would you weigh in choosing a different embedding model — context length, multilingual
      support, accuracy on domain-specific text, latency? -->
 
-**Embedding model:**
+**Embedding model:** all-MiniLM-L6-v2 via sentence-transformers
 
-**Top-k:**
+**Top-k:** 5. Since individual reviews are relatively short, fetching 5 chunks will provide the LLM with a diverse set of student opinions to synthesize without overwhelming the prompt context window.
 
-**Production tradeoff reflection:**
+**Production tradeoff reflection:** If deploying to production without cost constraints, I would use an upgraded model, for the increased context window for accessing more chunks, as well as a lower latency for responses.
 
 ---
 
@@ -74,11 +74,11 @@ This unofficial guide compiles and makes searchable student reviews, difficulty 
 
 | # | Question | Expected answer |
 |---|----------|-----------------|
-| 1 | | |
-| 2 | | |
-| 3 | | |
-| 4 | | |
-| 5 | | |
+| 1 | How difficult are Mark Stamp's courses, and which course is the most difficult? | According to the reviews, the average difficulty of Mark Stamp's courses is a 2.8/5. His most difficult course is CS 166. |
+| 2 | How hard of a grader is Tom Austin? | Tom Austin is a lenient grader who is very clear on his grading criteria. |
+| 3 | Is it better to take Katerina Potika or Chung-Wen Tsao for my elective? | It is better to take Katerina Potika for your elective, as her take-again percentage is higher at 48% compared to Chung-Wen Tsao's 16%. |
+| 4 | What is the average grade in Sayma Akther's classes? | The average grade in Sayma Akther's classes is a B+. |
+| 5 | Which professor is best to take for CS 146? | Doug Case is a better professor to take for CS 146, as students say he is a more lenient grader and his lectures are better compared to David Taylor. |
 
 ---
 
@@ -88,14 +88,15 @@ This unofficial guide compiles and makes searchable student reviews, difficulty 
      Consider: noisy or inconsistent documents, missing source attribution, off-topic
      retrieval, chunks that split key information across boundaries. -->
 
-1.
+1. RateMyProfessors uses JavaScript/GraphQL to load user reviews dynamically. Simple HTML scraping will only get the first 20 user reviews, so getting the rest of the reviews might be hard.
 
-2.
+2. Many students submit reviews without specifying the exact course code they took. If a user asks a course-specific question the retrieval system might struggle, and the LLM could hallucinate by assigning a generic review to a specific course query.
 
 ---
 
 ## Architecture
 
+![](mermaid.png)
 <!-- Draw a diagram of your pipeline showing the five stages:
      Document Ingestion → Chunking → Embedding + Vector Store → Retrieval → Generation
      Label each stage with the tool or library you're using.
@@ -116,8 +117,8 @@ This unofficial guide compiles and makes searchable student reviews, difficulty 
      "I'll give Claude my Chunking Strategy section and ask it to implement chunk_text()
      with my specified chunk size and overlap" is a plan. -->
 
-**Milestone 3 — Ingestion and chunking:**
+**Milestone 3 — Ingestion and chunking:** I'll give Copilot my Chunking Strategy section and ask it to implement chunk_text().
 
-**Milestone 4 — Embedding and retrieval:**
+**Milestone 4 — Embedding and retrieval:** I'll give Copilot my embedding strategy and ask it to implement.
 
-**Milestone 5 — Generation and interface:**
+**Milestone 5 — Generation and interface:** I'll have Claude help implement my generation code.
