@@ -41,11 +41,11 @@ This unofficial guide compiles and makes searchable student reviews, difficulty 
      numbers fit the structure of your documents.
      A review-heavy corpus warrants different chunking than a long FAQ. -->
 
-**Chunk size:** Chunks will be mapped to individual reviews, not character counts.
+**Chunk size:** 256 tokens. This is the maximum token limit of the all-MiniLM-L6-v2 model, and each review has a maximum size of 350 characters, which averages out to 50-100 words, which fits within this token limit.
 
-**Overlap:** 0. There will be no overlap between chunks since each review is independently written.
+**Overlap:** 30 tokens. The overlap size is approximately 10 percent of the chunk size. This matters in the worst case scenario where each character maps to a new token.
 
-**Reasoning:** Since each review is self-contained and written by a different student, often for a different course, using an arbitrary character limit or overlap would lead to different reviews bleeding into each other. Each chunk will also have global metadata (Professor Name, Course) appended to it to ensure it remains retrievable out of context.
+**Reasoning:** The model used, all-MiniLM-L6-v2, supports an input of up to 256 tokens. Given that RateMyProfessors has a maximum character limit of 350 for each review, the average review will have between 50-100 words. As most of the time, each word will map to 1-2 tokens, each review should fully fall within a single chunk. On the rare occasion that each character maps to a new token, an overlap of 30 tokens was set, so that multiple chunks from the same review are semantically similar.
 
 ---
 
