@@ -30,21 +30,30 @@ def parse_filters(query: str) -> dict | None:
     """Detect professor names and course codes in query; return a ChromaDB where filter."""
     q = query.lower()
 
-    professor = None
+    seen = set()
+    professors = []
     for alias in sorted(PROFESSOR_ALIASES, key=len, reverse=True):
         if alias in q:
-            professor = PROFESSOR_ALIASES[alias]
-            break
+            canonical = PROFESSOR_ALIASES[alias]
+            if canonical not in seen:
+                seen.add(canonical)
+                professors.append(canonical)
 
     course = None
     m = COURSE_RE.search(query)
     if m:
         course = f"CS{m.group(1).upper()}"
 
-    if professor and course:
-        return {"$and": [{"professor_name": {"$eq": professor}}, {"course": {"$eq": course}}]}
-    if professor:
-        return {"professor_name": {"$eq": professor}}
+    prof_filter = None
+    if len(professors) == 1:
+        prof_filter = {"professor_name": {"$eq": professors[0]}}
+    elif len(professors) > 1:
+        prof_filter = {"$or": [{"professor_name": {"$eq": p}} for p in professors]}
+
+    if prof_filter and course:
+        return {"$and": [prof_filter, {"course": {"$eq": course}}]}
+    if prof_filter:
+        return prof_filter
     if course:
         return {"course": {"$eq": course}}
     return None
